@@ -1,16 +1,31 @@
+cordova.define("TalkingData.TalkingDataSMS", function(require, exports, module) {
 var TalkingDataSMS = {
-    init:function(appKey, secretId) {
-        Cordova.exec(null, null, "TalkingDataSMS", "init", [appKey, secretId]);
+    initEAuth:function(appKey, secretId, accountName) {
+        Cordova.exec(null, null, "TalkingDataSMS", "initEAuth", [appKey, secretId, accountName]);
     },
-    applyAuthCode:function(countryCode, mobile, succCallback, failedCallback) {
-        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "applyAuthCode", [countryCode, mobile]);
+    applyAuthCode:function(countryCode, mobile, accountName, succCallback, failedCallback) {
+        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "applyAuthCode", [countryCode, mobile, accountName]);
     },
-    reapplyAuthCode:function(countryCode, mobile, requestId, succCallback, failedCallback) {
-        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "reapplyAuthCode", [countryCode, mobile, requestId]);
+    reapplyAuthCode:function(countryCode, mobile, requestId, accountName, succCallback, failedCallback) {
+        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "reapplyAuthCode", [countryCode, mobile, requestId, accountName]);
      },
-    verifyAuthCode:function(countryCode, mobile, authCode, succCallback, failedCallback) {
-        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "verifyAuthCode", [countryCode, mobile, authCode]);
-   }
-};
+    isVerifyAccount:function(accountName, succCallback, failedCallback){
+        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "isVerifyAccount", [accountName]);
+    },
+    isMobileMatchAccount:function(countryCode, mobile, accountName, succCallback, failedCallback){
+        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "isMobileMatchAccount", [countryCode, mobile, accountName]);
+    },
+    bindEAuth:function(countryCode, mobile, authCode, accountName, succCallback, failedCallback){
+        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "bindEAuth", [countryCode, mobile, authCode, accountName]);
+    },
+    unbindEAuth:function(countryCode, mobile, accountName, succCallback, failedCallback){
+        Cordova.exec(succCallback, failedCallback, "TalkingDataSMS", "unbindEAuth", [countryCode, mobile, accountName]);
+    },
+    getDeviceId:function(callBack) {
+        Cordova.exec(callBack, null, "TalkingDataSMS", "getDeviceId", []);
+    }
+   };
 
 module.exports = TalkingDataSMS;
+
+});
